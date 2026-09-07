@@ -36,3 +36,4 @@ frontend/playwright-report/
 !.env.example
 infra/modal/.env
 infra/modal/.env.*
+infra/modal/secrets.env
