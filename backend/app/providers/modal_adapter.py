@@ -28,6 +28,8 @@ class ModalAdapter(Provider):
         model_revision: str,
         endpoint_url: str,
         auth_token: str | None = None,
+        modal_key: str | None = None,
+        modal_secret: str | None = None,
         timeout_seconds: float = 120.0,
     ) -> None:
         self.provider_key = provider_key
@@ -35,13 +37,18 @@ class ModalAdapter(Provider):
         self.model_revision = model_revision
         self.endpoint_url = endpoint_url.rstrip("/")
         self.auth_token = auth_token
+        self.modal_key = modal_key
+        self.modal_secret = modal_secret
         self.timeout_seconds = timeout_seconds
         self._session: aiohttp.ClientSession | None = None
         self._cancelled: set[str] = set()
 
     def _headers(self) -> dict[str, str]:
         headers: dict[str, str] = {"Content-Type": "application/json"}
-        if self.auth_token:
+        if self.modal_key and self.modal_secret:
+            headers["Modal-Key"] = self.modal_key
+            headers["Modal-Secret"] = self.modal_secret
+        elif self.auth_token:
             headers["Authorization"] = f"Bearer {self.auth_token}"
         return headers
 

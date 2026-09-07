@@ -31,6 +31,7 @@ frontend/test-results/
 frontend/playwright-report/
 
 # Secrets
+.env
 *.env
 .env.*
 !.env.example
