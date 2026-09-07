@@ -16,6 +16,7 @@ data/*.db
 data/uploads/
 data/logs/
 logs/
+backend/data/
 
 # IDE
 .vscode/

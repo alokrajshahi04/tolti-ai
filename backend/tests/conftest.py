@@ -11,7 +11,7 @@ from sqlalchemy.orm import sessionmaker
 from app.core.database import Base, get_session
 from app.main import app
 
-TEST_DB_URL = "sqlite:///./test.db"
+TEST_DB_URL = "sqlite:////tmp/tolti-test.db"
 test_engine = create_engine(TEST_DB_URL, connect_args={"check_same_thread": False})
 TestSessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=test_engine)
 
@@ -38,3 +38,25 @@ def client():
     with TestClient(app) as c:
         yield c
     app.dependency_overrides.clear()
+
+
+def create_session(client: TestClient, display_name: str = "Tester") -> dict:
+    r = client.post("/api/v1/sessions", json={"display_name": display_name})
+    assert r.status_code == 201, r.text
+    data = r.json()
+    assert "session_token" in data
+    return data
+
+
+def auth_headers(client: TestClient, session_token: str) -> dict:
+    return {"Cookie": f"tolti_session={session_token}"}
+
+
+def create_room(client: TestClient, session_token: str, name: str = "Test room") -> dict:
+    r = client.post(
+        "/api/v1/rooms",
+        json={"name": name},
+        headers=auth_headers(client, session_token),
+    )
+    assert r.status_code == 201, r.text
+    return r.json()

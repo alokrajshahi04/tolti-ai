@@ -1,22 +1,16 @@
-from fastapi import APIRouter, Depends
-from sqlalchemy.orm import Session
+from fastapi import APIRouter
 
-from ..core.database import get_session
-from ..schemas.room import RoomShell
+from .health import router as health_router
+from .invites import router as invites_router
+from .memberships import router as memberships_router
+from .rooms import router as rooms_router
+from .sessions import router as sessions_router
+from .ws import router as ws_router
 
 router = APIRouter()
-
-
-@router.get("/health/live")
-def health_live() -> dict:
-    return {"status": "ok"}
-
-
-@router.get("/health/ready")
-def health_ready() -> dict:
-    return {"status": "ready"}
-
-
-@router.get("/rooms/{room_id}/shell", response_model=RoomShell)
-def get_room_shell(room_id: str, db: Session = Depends(get_session)) -> RoomShell:
-    return RoomShell(id=room_id, status="ok")
+router.include_router(health_router)
+router.include_router(rooms_router)
+router.include_router(sessions_router)
+router.include_router(invites_router)
+router.include_router(memberships_router)
+router.include_router(ws_router)
