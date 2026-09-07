@@ -196,6 +196,15 @@ export default function App() {
         : "Changes requested. The driver can revise the task.",
     );
   }
+  function requestRole(role: string) {
+    record(
+      self.name,
+      `requested ${role} permissions. The current ${role === "reviewer" ? "reviewer" : "host"} must approve.`,
+    );
+    notify(
+      `${role.charAt(0).toUpperCase() + role.slice(1)} access request added to shared activity.`,
+    );
+  }
   return (
     <>
       <WorkspaceShell
@@ -250,6 +259,7 @@ export default function App() {
             );
             notify("Control request added to shared activity.");
           }}
+          requestRole={requestRole}
           events={events}
           mode={mode}
           review={reviews[mode]}

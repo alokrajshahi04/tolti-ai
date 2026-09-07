@@ -17,6 +17,7 @@ interface Props {
   driver: PersonId;
   handoff: () => void;
   requestControl: () => void;
+  requestRole: (role: string) => void;
   events: EventItem[];
   mode: Mode;
   review: ReviewState;
@@ -145,6 +146,37 @@ export function ContextPanel(p: Props) {
                 </button>
               )}
             </div>
+            {(p.identity !== p.driver && p.identity !== "pallavi") && (
+              <div className="panel-section">
+                <h3>Request permissions</h3>
+                <p className="muted">
+                  Ask the host or driver to grant you additional access.
+                </p>
+                <div className="button-row">
+                  <button
+                    className="wide-btn"
+                    onClick={() => p.requestRole("reviewer")}
+                    disabled={p.agent === "running"}
+                  >
+                    <Icon name="check" />
+                    Request reviewer
+                  </button>
+                  <button
+                    className="wide-btn"
+                    onClick={() => p.requestRole("engineering")}
+                    disabled={p.agent === "running"}
+                  >
+                    <Icon name="code" />
+                    Request engineering
+                  </button>
+                </div>
+                {p.agent === "running" && (
+                  <p className="micro">
+                    Finish the active demo run before requesting new permissions.
+                  </p>
+                )}
+              </div>
+            )}
             <div className="preview-control">
               <label htmlFor="identity">Preview identity</label>
               <select
