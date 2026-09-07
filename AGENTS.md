@@ -1,0 +1,1 @@
+# Tolti coding assistant rules
