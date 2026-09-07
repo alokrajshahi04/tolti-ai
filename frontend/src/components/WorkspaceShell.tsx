@@ -107,7 +107,7 @@ export function WorkspaceShell(p: Props) {
         <div className="sidebar-bottom">
           <button className="system-link" onClick={() => open("logs")}>
             <Icon name="terminal" size={16} />
-            <span>Local app · Modal inference</span>
+            <span>Local app / Modal cloud inference</span>
             <Icon name="chevron" size={14} />
           </button>
           <button className="profile" onClick={() => open("people")}>
@@ -122,10 +122,10 @@ export function WorkspaceShell(p: Props) {
       </aside>
       <div className="main-shell">
         <div className="prototype-strip">
-          <span className="prototype-label">UI PROTOTYPE</span>
-          <span>Local demo state · no AI calls or live multiplayer</span>
-          <button className="text-btn" onClick={() => open("people")}>
-            Try roles
+          <span className="prototype-label">SKELETON</span>
+          <span>Local app / Modal cloud inference · Model: Not configured</span>
+          <button className="text-btn" onClick={() => open("logs")}>
+            Diagnostics
             <Icon name="chevron" size={14} />
           </button>
         </div>

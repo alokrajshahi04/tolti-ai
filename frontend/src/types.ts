@@ -1,6 +1,12 @@
 export type Mode = "chat" | "documents" | "code" | "agent";
 export type Panel =
-  "people" | "sources" | "activity" | "logs" | "review" | "outputs" | null;
+  | "people"
+  | "sources"
+  | "activity"
+  | "logs"
+  | "review"
+  | "outputs"
+  | null;
 export type PersonId = "alok" | "pallavi" | "aditya";
 export type AgentState = "ready" | "running" | "review" | "approved";
 export type ReviewState = "pending" | "approved" | "changes";

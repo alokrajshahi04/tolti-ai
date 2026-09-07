@@ -1,0 +1,16 @@
+[project]
+name = "tolti-modal"
+version = "0.1.0"
+description = "TOLTI Modal deployment code"
+requires-python = ">=3.12"
+dependencies = [
+  "modal>=0.64.0",
+]
+
+[project.optional-dependencies]
+dev = [
+  "ruff>=0.8.0",
+]
+
+[tool.ruff]
+line-length = 100

@@ -3,17 +3,19 @@ __pycache__/
 *.pyc
 .venv/
 *.egg-info/
-dist/
-build/
+backend/dist/
+backend/build/
 
 # Node
 node_modules/
 dist/
 *.tsbuildinfo
 
-# Data
+# Data and runtime
 data/*.db
 data/uploads/
+data/logs/
+logs/
 
 # IDE
 .vscode/
@@ -23,5 +25,13 @@ data/uploads/
 .DS_Store
 Thumbs.db
 
-# uv
-uv.lock
+# Frontend test artifacts
+frontend/test-results/
+frontend/playwright-report/
+
+# Secrets
+*.env
+.env.*
+!.env.example
+infra/modal/.env
+infra/modal/.env.*

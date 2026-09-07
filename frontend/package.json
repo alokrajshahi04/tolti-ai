@@ -4,8 +4,12 @@
   "private": true,
   "type": "module",
   "scripts": {
+    "dev": "node scripts/dev.mjs",
     "build": "node scripts/build.mjs",
+    "preview": "npx serve dist -l 3000",
     "typecheck": "tsc --noEmit",
+    "lint": "prettier --check \"src/**/*.{ts,tsx,css}\"",
+    "format": "prettier --write \"src/**/*.{ts,tsx,css}\"",
     "test": "node scripts/smoke.mjs"
   },
   "dependencies": {
@@ -17,6 +21,7 @@
     "typescript": "7.0.2",
     "@types/react": "^19.0.0",
     "@types/react-dom": "^19.0.0",
+    "prettier": "3.4.2",
     "playwright": "1.63.0"
   }
 }
