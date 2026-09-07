@@ -26,10 +26,10 @@ app = modal.App("tolti-models")
 # Configuration — pin these after smoke tests, do not leave floating
 # ---------------------------------------------------------------------------
 CODE_MODEL_ID = "Qwen/Qwen2.5-Coder-7B-Instruct"
-CODE_MODEL_REVISION = os.environ.get("TOLTI_CODE_REVISION", "main")
+CODE_MODEL_REVISION = os.environ.get("TOLTI_CODE_REVISION", "c03e6d358207e414f1eca0bb1891e29f1db0e242")
 
 TEXT_MODEL_ID = "Qwen/Qwen3-8B"
-TEXT_MODEL_REVISION = os.environ.get("TOLTI_TEXT_REVISION", "main")
+TEXT_MODEL_REVISION = os.environ.get("TOLTI_TEXT_REVISION", "b968826d9c46dd6066d109eabc6255188de91218")
 
 VLLM_PORT = 8000
 GPU_TYPE = "L40S"
